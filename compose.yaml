@@ -4,6 +4,7 @@
 
 services:
   db:
+    restart: always
     image: mariadb:10.11.13-jammy
     ports:
       - ${MARIADB_EXTERNAL_PORT}:3306
@@ -17,6 +18,7 @@ services:
       - TZ=EST5EDT
 
   adminer:
+    restart: always
     image: adminer:5.3.0-standalone
     depends_on:
       - db
@@ -26,6 +28,7 @@ services:
       - .env
 
   app:
+    restart: always
     build:
       context: .
     volumes:
