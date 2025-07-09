@@ -11,6 +11,7 @@ services:
     volumes:
       - ./db-scripts:/docker-entrypoint-initdb.d
       - ./config/mariadb.cnf:/etc/mysql/conf.d/opal.cnf
+      - mariadbdata:/var/lib/mysql
     environment:
       - MARIADB_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
       - MARIADB_USER=${DATABASE_USER}
@@ -22,8 +23,8 @@ services:
     image: adminer:5.3.0-standalone
     depends_on:
       - db
-    ports:
-      - ${ADMINER_PORT}:8080
+    expose:
+      - "8080"
     env_file:
       - .env
 
@@ -45,3 +46,26 @@ services:
       - .env
      # Upgrade legacy dbs with alembic
     command: /app/alembic-upgrade.sh
+  
+  nginx:
+    env_file:
+      - .env
+    container_name: nginx
+    build:
+      context: ./nginx
+      args:
+        NGINX_CONF: nginx_ec2.conf
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/www/.well-known/acme-challenge:/var/www/.well-known/acme-challenge
+      - /etc/letsencrypt/live/opaldb.shoprideon.com/fullchain.pem:/etc/ssl/certs/fullchain.pem
+      - /etc/letsencrypt/live/opaldb.shoprideon.com/privkey.pem:/etc/ssl/private/privkey.pem
+    depends_on:
+      - adminer
+
+volumes:
+  mariadbdata: {}
