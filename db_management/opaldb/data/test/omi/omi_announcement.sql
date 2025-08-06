@@ -3,8 +3,6 @@
 -- SPDX-License-Identifier: AGPL-3.0-or-later
 
 INSERT INTO `Announcement` (`AnnouncementSerNum`, `CronLogSerNum`, `PatientSerNum`, `PostControlSerNum`, `DateAdded`, `ReadStatus`, `ReadBy`, `LastUpdated`) VALUES
-(11,	NULL,	59,	16,	'2000-01-01 00:00:00',	0,	'[]',	'2000-01-01 00:00:00'),
-(12,	NULL,	59,	23,	'2000-01-01 00:00:00',	0,	'[]',	'2000-01-01 00:00:00'),
 -- Add all of Laurie's data, all set to read
 (8, NULL, 92, 16, '2016-05-06 17:24:41', 1, '["a51fba18-3810-4808-9238-4d0e487785c8"]', '2016-05-16 18:08:44'),
 (9, NULL, 92, 17, '2016-05-06 17:24:41', 1, '["a51fba18-3810-4808-9238-4d0e487785c8"]', '2016-05-16 18:08:30'),
