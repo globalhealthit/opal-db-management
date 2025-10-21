@@ -24,6 +24,11 @@
   //
   // https://docs.renovatebot.com/configuration-options/#rebasewhen
   "rebaseWhen": "conflicted",
+  // Keep uv lockfile updated regularly
+  // https://docs.renovatebot.com/configuration-options/#lockfilemaintenance
+  "lockfileMaintenance": {
+    "enabled": true,
+  },
   "packageRules": [
     // Change commit type to build for Docker-related updates
     {
