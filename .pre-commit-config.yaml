@@ -6,7 +6,7 @@ exclude: '^(\.vscode/launch\.json|manage\.py)'
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v5.0.0
+  rev: v6.0.0
   hooks:
   - id: check-added-large-files
   - id: check-merge-conflict
@@ -32,20 +32,20 @@ repos:
     - id: validate-pyproject
 
 - repo: https://github.com/executablebooks/mdformat
-  rev: 0.7.22
+  rev: 1.0.0
   hooks:
     - id: mdformat
       language: python
       additional_dependencies:
-        - mdformat-mkdocs==4.3.0
+        - mdformat-mkdocs==4.4.2
 
 - repo: https://github.com/astral-sh/uv-pre-commit
-  rev: 0.7.12
+  rev: 0.9.8
   hooks:
     - id: uv-lock
 
 - repo: https://github.com/fsfe/reuse-tool
-  rev: v5.0.2
+  rev: v6.2.0
   hooks:
     - id: reuse-lint-file
 
@@ -56,7 +56,7 @@ repos:
 
 # https://docs.astral.sh/ruff/integrations/#pre-commit
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.11.13
+  rev: v0.14.4
   hooks:
     # Run the linter with fixes
     - id: ruff
@@ -76,18 +76,18 @@ repos:
       types: [python]
 
 - repo: https://github.com/crate-ci/typos
-  rev: v1.33.1
+  rev: v1.39.0
   hooks:
     - id: typos
 
 # zizmor detects security vulnerabilities in GitHub Actions workflows.
 - repo: https://github.com/woodruffw/zizmor-pre-commit
-  rev: v1.9.0
+  rev: v1.16.3
   hooks:
     - id: zizmor
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0.33.0
+  rev: 0.34.1
   hooks:
     - id: check-github-workflows
       args: ["--verbose"]
@@ -100,7 +100,7 @@ repos:
 # `actionlint` hook, for verifying correct syntax in GitHub Actions workflows.
 # Some additional configuration for `actionlint` can be found in `.github/actionlint.yaml`.
 - repo: https://github.com/rhysd/actionlint
-  rev: v1.7.7
+  rev: v1.7.8
   hooks:
     - id: actionlint
       language: golang
@@ -108,4 +108,4 @@ repos:
         # actionlint has a shellcheck integration which extracts shell scripts in `run:` steps from GitHub Actions
         # and checks these with shellcheck.
         # see also: https://github.com/rhysd/actionlint/pull/482
-        - "github.com/wasilibs/go-shellcheck/cmd/shellcheck@v0.10.0"
+        - "github.com/wasilibs/go-shellcheck/cmd/shellcheck@v0.11.1"
